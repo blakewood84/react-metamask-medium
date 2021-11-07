@@ -14,7 +14,6 @@ function getLibrary(provider, connector) {
 }
 
 ReactDOM.render(
-  
   <React.StrictMode>
     <Web3ReactProvider getLibrary={getLibrary}>
       <MetaMaskProvider>
