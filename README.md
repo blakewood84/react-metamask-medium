@@ -4,9 +4,7 @@ A simple project to plugin Metamask with a React App for simple Etherium transac
 
 1. **yarn** to install dependencies
 
-2. Run local Ginache server (I use at localhost 8545)
-
-3. **yarn start** to run project
+2. **yarn start** to run project
 
 ### Important!
 
