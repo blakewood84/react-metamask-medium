@@ -7,9 +7,7 @@ export const MetaMaskContext = React.createContext(null)
 export const MetaMaskProvider = ({ children }) => {
 
     const { activate, account, library, connector, active, deactivate } = useWeb3React()
-
-    console.log('Account: ', account)
-
+    
     const [isActive, setIsActive] = useState(false)
     const [shouldDisable, setShouldDisable] = useState(false) // Should disable connect button while connecting to MetaMask
     const [isLoading, setIsLoading] = useState(true)
