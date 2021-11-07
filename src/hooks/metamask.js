@@ -8,7 +8,10 @@ export const MetaMaskProvider = ({ children }) => {
 
     const { activate, account, library, connector, active, deactivate } = useWeb3React()
 
+    console.log('Account: ', account)
+
     const [isActive, setIsActive] = useState(false)
+    const [shouldDisable, setShouldDisable] = useState(false) // Should disable connect button while connecting to MetaMask
     const [isLoading, setIsLoading] = useState(true)
 
     // Init Loading
@@ -31,8 +34,11 @@ export const MetaMaskProvider = ({ children }) => {
     // Connect to MetaMask wallet
     const connect = async () => {
         console.log('Connecting to MetaMask...')
+        setShouldDisable(true)
         try {
-            await activate(injected)
+            await activate(injected).then(() => {
+                setShouldDisable(false)
+            })
         } catch(error) {
             console.log('Error on connecting: ', error)
         }
@@ -54,9 +60,10 @@ export const MetaMaskProvider = ({ children }) => {
             account,
             isLoading,
             connect,
-            disconnect
+            disconnect,
+            shouldDisable
         }),
-        [isActive, isLoading]
+        [isActive, isLoading, shouldDisable, account]
     )
 
     return <MetaMaskContext.Provider value={values}>{children}</MetaMaskContext.Provider>
